@@ -388,7 +388,7 @@
     pointer-events: none;
     transition: opacity 0.35s ease;
     overflow-y: auto;
-    padding: 60px 20px;
+    padding: 80px 40px;
   }
   .casos-overlay.open { opacity: 1; pointer-events: all; }
   .casos-panel {
@@ -396,7 +396,7 @@
     border: 1px solid var(--border);
     max-width: 900px;
     width: 100%;
-    padding: clamp(24px, 5vw, 64px);
+    padding: 64px;
     position: relative;
     transform: translateY(30px);
     transition: transform 0.35s ease;
@@ -404,46 +404,16 @@
   .casos-overlay.open .casos-panel { transform: translateY(0); }
   .casos-close {
     position: absolute;
-    top: 16px; right: 20px;
+    top: 24px; right: 24px;
     background: none;
     border: none;
     color: var(--gray);
-    font-size: 32px;
+    font-size: 28px;
     cursor: pointer;
     line-height: 1;
     transition: color 0.2s;
-    z-index: 10;
   }
   .casos-close:hover { color: var(--white); }
-  .casos-inner-grid {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 40px;
-    align-items: start;
-  }
-  .casos-stats {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    min-width: 120px;
-  }
-  @media (max-width: 600px) {
-    .casos-inner-grid {
-      grid-template-columns: 1fr;
-      gap: 32px;
-    }
-    .casos-stats {
-      flex-direction: row;
-      justify-content: space-between;
-      min-width: unset;
-      border-top: 1px solid var(--border);
-      padding-top: 24px;
-    }
-    .casos-stats > div {
-      text-align: center;
-      flex: 1;
-    }
-  }
   .btn-casos {
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 12px;
@@ -594,8 +564,8 @@
     <h2 style="font-family: 'Bebas Neue', sans-serif; font-size: clamp(40px, 5vw, 72px); line-height: 0.9; color: var(--white); margin-bottom: 48px;">LO QUE YA<br><span style="color: var(--red);">FUNCIONA.</span></h2>
 
     <!-- CASO 1 -->
-    <div style="border: 1px solid var(--border); padding: clamp(20px, 4vw, 40px); margin-bottom: 24px;">
-      <div class="casos-inner-grid">
+    <div style="border: 1px solid var(--border); padding: 40px; margin-bottom: 24px;">
+      <div style="display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: start;">
         <div>
           <div style="font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--red); margin-bottom: 12px;">Centro de estética — Tandil, Buenos Aires</div>
           <p style="font-size: 15px; font-weight: 300; line-height: 1.85; color: var(--gray); margin-bottom: 24px;">Sistema completo integrado: gestión de turnos, automatización de WhatsApp, panel administrativo con CRM, base de datos de clientes y estadísticas del negocio. Todo en una sola plataforma.</p>
@@ -608,7 +578,7 @@
             <div style="display: flex; align-items: center; gap: 12px; font-size: 12px; color: var(--gray); font-family: 'Barlow Condensed', sans-serif; letter-spacing: 0.1em; text-transform: uppercase;"><div style="width: 5px; height: 5px; background: var(--red); border-radius: 50%; flex-shrink: 0;"></div>Landing page integrada al sistema</div>
           </div>
         </div>
-        <div class="casos-stats">
+        <div style="display: flex; flex-direction: column; gap: 20px; min-width: 140px;">
           <div>
             <div style="font-family: 'Bebas Neue', sans-serif; font-size: 52px; line-height: 1; color: var(--red);">20</div>
             <div style="font-family: 'Barlow Condensed', sans-serif; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gray);">Profesionales</div>
@@ -648,7 +618,7 @@
       <div class="contact-details reveal reveal-d3">
         <div class="contact-row">
           <span class="contact-row-label">Email</span>
-          <span class="contact-row-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2c42495445594102454d025f434059584543425f6c4b414d4540024f4341">[email&#160;protected]</a></span>
+          <span class="contact-row-val">nexium.ia.solutions@gmail.com</span>
         </div>
         <div class="contact-row">
           <span class="contact-row-label">Ubicación</span>
@@ -688,7 +658,7 @@
   <div class="footer-copy">© 2026 Nexium AI Solutions. Todos los derechos reservados.</div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ── BOTÓN INICIAR CONVERSACIÓN → WhatsApp Oscar ──
 document.getElementById('btnWhatsapp').addEventListener('click', function() {
   const nombre  = document.getElementById('contactNombre').value.trim();
@@ -766,4 +736,9 @@ document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 const overlay = document.getElementById('casosOverlay');
 const btnOpen = document.getElementById('casosBtn');
 const btnClose = document.getElementById('casosClose');
-btnOpen.addEventListener('click', () => 
+btnOpen.addEventListener('click', () => overlay.classList.add('open'));
+btnClose.addEventListener('click', () => overlay.classList.remove('open'));
+overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.classList.remove('open'); });
+</script>
+</body>
+</html>
